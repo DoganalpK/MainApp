@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MainApp.Persistence
 {
-    public static partial class ServiceRegistration
+    public static class ServiceRegistration
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
@@ -20,8 +20,6 @@ namespace MainApp.Persistence
             });
 
             services.AddScoped<IMainAppDbContext>(provider => provider.GetService<MainAppDbContext>());
-
-
             services.AddTransient<IProductRepository, ProductRepository>();
         }
     }

@@ -14,7 +14,7 @@ namespace MainApp.Persistence.Repositories
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly MainAppDbContext _dbContext;
-        private DbSet<T> _dbSet { get => _dbContext.Set<T>(); }
+        private DbSet<T> DbSet { get => _dbContext.Set<T>(); }
         public Repository(MainAppDbContext dbContext) => _dbContext = dbContext;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public List<T> GetAll()
         {
-            return _dbSet.ToList();
+            return DbSet.ToList();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<List<T>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            return await DbSet.ToListAsync();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public List<T> GetAll(Expression<Func<T, bool>> filter)
         {
-            return _dbSet.Where(filter).AsNoTracking().ToList();
+            return DbSet.Where(filter).AsNoTracking().ToList();
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
-            return await _dbSet.Where(filter).AsNoTracking().ToListAsync();
+            return await DbSet.Where(filter).AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace MainApp.Persistence.Repositories
         public List<T> GetAll<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
             return orderByType == OrderByType.ASC ?
-                _dbSet.OrderBy(selector).AsNoTracking().ToList() :
-                _dbSet.OrderByDescending(selector).AsNoTracking().ToList();
+                DbSet.OrderBy(selector).AsNoTracking().ToList() :
+                DbSet.OrderByDescending(selector).AsNoTracking().ToList();
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace MainApp.Persistence.Repositories
         public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
             return orderByType == OrderByType.ASC ?
-                await _dbSet.OrderBy(selector).AsNoTracking().ToListAsync() :
-                await _dbSet.OrderByDescending(selector).AsNoTracking().ToListAsync();
+                await DbSet.OrderBy(selector).AsNoTracking().ToListAsync() :
+                await DbSet.OrderByDescending(selector).AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace MainApp.Persistence.Repositories
         public List<T> GetAll<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
             return orderByType == OrderByType.ASC ?
-                _dbSet.Where(filter).OrderBy(selector).AsNoTracking().ToList() :
-                _dbSet.Where(filter).OrderByDescending(selector).AsNoTracking().ToList();
+                DbSet.Where(filter).OrderBy(selector).AsNoTracking().ToList() :
+                DbSet.Where(filter).OrderByDescending(selector).AsNoTracking().ToList();
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace MainApp.Persistence.Repositories
         public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
             return orderByType == OrderByType.ASC ?
-                await _dbSet.Where(filter).OrderBy(selector).AsNoTracking().ToListAsync() :
-                await _dbSet.Where(filter).OrderByDescending(selector).AsNoTracking().ToListAsync();
+                await DbSet.Where(filter).OrderBy(selector).AsNoTracking().ToListAsync() :
+                await DbSet.Where(filter).OrderByDescending(selector).AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public T Find(Guid Id)
         {
-            return _dbSet.Find(Id);
+            return DbSet.Find(Id);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<T> FindAsync(Guid Id)
         {
-            return await _dbSet.FindAsync(Id);
+            return await DbSet.FindAsync(Id);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public T GetByFilter(Expression<Func<T, bool>> filter)
         {
-            return _dbSet.SingleOrDefault(filter);
+            return DbSet.SingleOrDefault(filter);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter)
         {
-            return await _dbSet.SingleOrDefaultAsync(filter);
+            return await DbSet.SingleOrDefaultAsync(filter);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace MainApp.Persistence.Repositories
         /// <param name="entity"></param>
         public void Create(T entity)
         {
-            _dbSet.Add(entity);
+            DbSet.Add(entity);
             _dbContext.SaveChanges();
         }
 
@@ -170,7 +170,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task CreateAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            await DbSet.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -180,7 +180,7 @@ namespace MainApp.Persistence.Repositories
         /// <param name="entity"></param>
         public void Update(T entity)
         {
-            _dbSet.Update(entity);
+            DbSet.Update(entity);
             _dbContext.SaveChanges();
         }
 
@@ -190,7 +190,7 @@ namespace MainApp.Persistence.Repositories
         /// <param name="entity"></param>
         public void Remove(T entity)
         {
-            _dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public int Count()
         {
-            return _dbSet.Count();
+            return DbSet.Count();
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<int> CountAsync()
         {
-            return await _dbSet.CountAsync();
+            return await DbSet.CountAsync();
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public int Count(Expression<Func<T, bool>> filter)
         {
-            return _dbSet.Count(filter);
+            return DbSet.Count(filter);
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<int> CountAsync(Expression<Func<T, bool>> filter)
         {
-            return await _dbSet.CountAsync(filter);
+            return await DbSet.CountAsync(filter);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public bool Any()
         {
-            return _dbSet.Any();
+            return DbSet.Any();
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<bool> AnyAsync()
         {
-            return await _dbSet.AnyAsync();
+            return await DbSet.AnyAsync();
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public bool Any(Expression<Func<T, bool>> filter)
         {
-            return _dbSet.Any(filter);
+            return DbSet.Any(filter);
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> filter)
         {
-            return await _dbSet.AnyAsync(filter);
+            return await DbSet.AnyAsync(filter);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public IQueryable<T> GetQuery()
         {
-            return _dbSet.AsQueryable();
+            return DbSet.AsQueryable();
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace MainApp.Persistence.Repositories
         /// <returns></returns>
         public string ToQueryString()
         {
-            return _dbSet.ToQueryString();
+            return DbSet.ToQueryString();
         }
     }
 }

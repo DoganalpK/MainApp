@@ -23,10 +23,10 @@ namespace MainApp.Persistence.Contexts
         //    optionsBuilder.UseSqlServer("server=localhost; database=MainAppDb; integrated security=true;");
         //}
 
-        public async Task<int> SaveChangesAsync()
-        {
-            return await base.SaveChangesAsync();
-        }
+        //public async Task<int> SaveChangesAsync()
+        //{
+        //    return await base.SaveChangesAsync();
+        //}
 
         #region [ DB SETS ]
 

@@ -1,8 +1,8 @@
+using MainApp.Application;
 using MainApp.Persistence;
-//using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-//a
+
 
 // Add services to the container.
 
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();
-
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

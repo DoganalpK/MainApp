@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 namespace MainApp.Application.Interfaces.Contexts
 {
     public interface IMainAppDbContext
-    { 
+    {
         DbSet<Product> Products { get; set; }
 
-        Task<int> SaveChangesAsync();//
+        //Task<int> SaveChangesAsync();//
     }
 }
