@@ -26,7 +26,7 @@ namespace MainApp.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CreateProductCommand command)
         {
-            return Ok(_mediator.Send(command));
+            return Ok(await _mediator.Send(command));
         }
     }
 }

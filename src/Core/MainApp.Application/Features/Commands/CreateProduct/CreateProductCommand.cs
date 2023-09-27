@@ -1,33 +1,28 @@
 ﻿using AutoMapper;
+using MainApp.Application.Dtos;
 using MainApp.Application.Interfaces.Repositories;
 using MediatR;
 
 namespace MainApp.Application.Features.Commands.CreateProduct
 {
-    public class CreateProductCommand : IRequest<Guid>
+    public record CreateProductCommand(ProductDto Product) : IRequest<Guid>;
+
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public decimal Value { get; set; }
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
+        public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper)
         {
-            private readonly IProductRepository _productRepository;
-            private readonly IMapper _mapper;
+            _productRepository = productRepository;
+            _mapper = mapper;
+        }
 
-            public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper)
-            {
-                _productRepository = productRepository;
-                _mapper = mapper;
-            }
-
-            public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
-            {
-                var product = _mapper.Map<Domain.Entities.Product>(request);
-                await _productRepository.CreateAsync(product);
-                return product.Id;
-            }
+        public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        {
+            var product = _mapper.Map<Domain.Entities.Product>(request.Product);
+            await _productRepository.CreateAsync(product);
+            return product.Id;
         }
     }
 }

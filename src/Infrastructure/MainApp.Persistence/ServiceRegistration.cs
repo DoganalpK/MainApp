@@ -13,7 +13,7 @@ namespace MainApp.Persistence
         public static void AddPersistenceServices(this IServiceCollection services)
         {
             services.AddDbContext<MainAppDbContext>(opt =>
-            {
+            {//
                 opt.UseSqlServer(
                     "server=localhost; database=MainAppDb; integrated security=true;TrustServerCertificate=True;",
                     b => b.MigrationsAssembly(typeof(MainAppDbContext).Assembly.FullName));

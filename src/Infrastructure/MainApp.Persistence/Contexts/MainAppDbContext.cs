@@ -7,10 +7,13 @@ namespace MainApp.Persistence.Contexts
 {
     public class MainAppDbContext : DbContext, IMainAppDbContext
     {
-        public MainAppDbContext(DbContextOptions<MainAppDbContext> options) : base(options)
+        protected MainAppDbContext(DbContextOptions options) : base(options)
         {
-
         }
+
+        public MainAppDbContext(DbContextOptions<MainAppDbContext> options) : this((DbContextOptions)options)
+        {
+        }        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
