@@ -13,7 +13,7 @@ namespace MainApp.Persistence.Contexts
 
         public MainAppDbContext(DbContextOptions<MainAppDbContext> options) : this((DbContextOptions)options)
         {
-        }        
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

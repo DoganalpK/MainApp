@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MainApp.Persistence
+namespace MainApp.Persistence.DependencyResolvers
 {
     public static class ServiceRegistration
     {

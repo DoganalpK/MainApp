@@ -17,10 +17,9 @@ namespace MainApp.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(GetAllProductsQuery getAllProductsQuery)
         {
-            var query = new GetAllProductsQuery();
-            return Ok(await _mediator.Send(query));
+            return Ok(await _mediator.Send(getAllProductsQuery));
         }
 
         [HttpPost]

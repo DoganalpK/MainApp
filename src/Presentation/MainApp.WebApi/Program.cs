@@ -1,5 +1,5 @@
-using MainApp.Application;
-using MainApp.Persistence;
+using MainApp.Application.DependencyResolvers;
+using MainApp.Persistence.DependencyResolvers;
 
 var builder = WebApplication.CreateBuilder(args);
 

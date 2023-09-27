@@ -5,9 +5,9 @@ using MainApp.Domain.Entities;
 
 namespace MainApp.Application.Mappings
 {
-    public class GeneralMappings : Profile
+    public class AutoMapperProfile : Profile
     {
-        public GeneralMappings()
+        public AutoMapperProfile()
         {
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Product, CreateProductCommand>().ReverseMap();
