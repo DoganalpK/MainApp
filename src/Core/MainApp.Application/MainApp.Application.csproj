@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\Repositories\IProductRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Wrappers\" />
-    <Folder Include="Wrappers\" />
+    <Folder Include="Features\Commands\CreateProduct\" />
   </ItemGroup>
 
   <ItemGroup>

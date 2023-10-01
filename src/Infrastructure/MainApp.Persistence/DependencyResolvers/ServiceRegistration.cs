@@ -1,9 +1,13 @@
-﻿using MainApp.Application.Interfaces.Contexts;
-using MainApp.Application.Interfaces.Repositories;
+﻿using FluentValidation;
+using MainApp.Application.Dtos.Product;
+using MainApp.Application.Interfaces.Contexts;
+using MainApp.Application.Interfaces.Services;
+using MainApp.Application.Interfaces.Uow;
 using MainApp.Persistence.Contexts;
-using MainApp.Persistence.Repositories;
+using MainApp.Persistence.Services;
+using MainApp.Persistence.Uow;
+using MainApp.Persistence.ValidationRules.FluentValidation;
 using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MainApp.Persistence.DependencyResolvers
@@ -13,14 +17,19 @@ namespace MainApp.Persistence.DependencyResolvers
         public static void AddPersistenceServices(this IServiceCollection services)
         {
             services.AddDbContext<MainAppDbContext>(opt =>
-            {//
+            {
                 opt.UseSqlServer(
                     "server=localhost; database=MainAppDb; integrated security=true;TrustServerCertificate=True;",
                     b => b.MigrationsAssembly(typeof(MainAppDbContext).Assembly.FullName));
             });
 
             services.AddScoped<IMainAppDbContext>(provider => provider.GetService<MainAppDbContext>());
-            services.AddTransient<IProductRepository, ProductRepository>();
+
+
+
+            services.AddTransient<IProductService, ProductService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddTransient<IValidator<ProductListDto>, ProductListDtoValidator>();
         }
     }
 }

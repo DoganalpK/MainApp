@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using MainApp.Application.Dtos;
-using MainApp.Application.Features.Commands.CreateProduct;
+using MainApp.Application.Dtos.Product;
 using MainApp.Domain.Entities;
 
 namespace MainApp.Application.Mappings
@@ -9,8 +8,8 @@ namespace MainApp.Application.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<Product, ProductDto>().ReverseMap();
-            CreateMap<Product, CreateProductCommand>().ReverseMap();
+            CreateMap<Product, ProductCreateDto>().ReverseMap();
+            CreateMap<Product, ProductListDto>().ReverseMap();
         }
     }
 }

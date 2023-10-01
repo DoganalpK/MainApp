@@ -1,27 +1,30 @@
 ﻿using AutoMapper;
-using MainApp.Application.Dtos;
-using MainApp.Application.Interfaces.Repositories;
+using MainApp.Application.Dtos.Product;
+using MainApp.Application.Interfaces.Services;
+using MainApp.Application.Wrappers;
 using MediatR;
 
 namespace MainApp.Application.Features.Queries.GetAllProducts
 {
-    public record GetAllProductsQuery(string a) : IRequest<List<ProductDto>>;
-
-    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<ProductDto>>
+    public class GetAllProductsQuery : IRequest<IResponse<List<ProductListDto>>>
     {
-        private readonly IProductRepository _productRepository;
+    }
+
+    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IResponse<List<ProductListDto>>>
+    {
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper)
+        public GetAllProductsQueryHandler(IProductService productService, IMapper mapper)
         {
-            _productRepository = productRepository;
+            _productService = productService;
             _mapper = mapper;
         }
 
-        public async Task<List<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+        public async Task<IResponse<List<ProductListDto>>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = await _productRepository.GetAllAsync();
-            return _mapper.Map<List<ProductDto>>(products);
+            var aa = await _productService.GetAllAsync();
+            return aa;
         }
     }
 }

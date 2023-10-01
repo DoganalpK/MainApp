@@ -1,8 +1,8 @@
-﻿using MainApp.Domain.Common;
+﻿using MainApp.Application.Interfaces.Dtos;
 
-namespace MainApp.Domain.Entities
+namespace MainApp.Application.Dtos.Product
 {
-    public class Product : BaseEntity
+    public class ProductCreateDto : IDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }

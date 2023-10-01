@@ -1,6 +1,8 @@
-﻿namespace MainApp.Application.Dtos
+﻿using MainApp.Application.Interfaces.Dtos;
+
+namespace MainApp.Application.Dtos.Product
 {
-    public class ProductDto
+    public class ProductListDto : IDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
