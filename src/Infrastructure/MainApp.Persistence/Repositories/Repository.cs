@@ -1,4 +1,5 @@
 ﻿using MainApp.Application.Enums;
+using MainApp.Application.Interfaces.Dtos;
 using MainApp.Application.Interfaces.Repositories;
 using MainApp.Domain.Common;
 using MainApp.Persistence.Contexts;
@@ -11,7 +12,11 @@ namespace MainApp.Persistence.Repositories
     /// Generic Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Repository<T> : IRepository<T> where T : BaseEntity
+    public class Repository<CreateDto, UpdateDto, ListDto, T> : IRepository<CreateDto, UpdateDto, ListDto, T>
+        where CreateDto : class, IDto, new()
+        where UpdateDto : class, IUpdateDto, new()
+        where ListDto : class, IDto, new()
+        where T : BaseEntity
     {
         private readonly MainAppDbContext _dbContext;
         private DbSet<T> DbSet { get => _dbContext.Set<T>(); }
@@ -285,6 +290,16 @@ namespace MainApp.Persistence.Repositories
         public string ToQueryString()
         {
             return DbSet.ToQueryString();
+        }
+
+        List<ListDto> IRepository<CreateDto, UpdateDto, ListDto, T>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<ListDto>> IRepository<CreateDto, UpdateDto, ListDto, T>.GetAllAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

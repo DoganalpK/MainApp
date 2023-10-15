@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using MainApp.Application.Enums;
 using MainApp.Application.Interfaces.Dtos;
 using MainApp.Application.Interfaces.Services;
 using MainApp.Application.Interfaces.Uow;
 using MainApp.Application.Wrappers;
 using MainApp.Domain.Common;
-using MainApp.Persistence.Wrappers;
+using System.Linq.Expressions;
 
 namespace MainApp.Application.Services
 {
@@ -17,58 +16,168 @@ namespace MainApp.Application.Services
         where T : BaseEntity
     {
         private readonly IUnitOfWork _uow;
-        private readonly IValidator<CreateDto> _createValidator;
-        //private readonly IValidator<UpdateDto> _updateValidator;
         private readonly IMapper _mapper;
 
-        //public Service(IUnitOfWork uow, IValidator<CreateDto> createValidator, IValidator<UpdateDto> updateValidator, IMapper mapper)
-        //{
-        //    _uow = uow;
-        //    _createValidator = createValidator;
-        //    _updateValidator = updateValidator;
-        //    _mapper = mapper;
-        //}
-
-        public Service(IUnitOfWork uow, IValidator<CreateDto> createValidator, IMapper mapper)
+        public Service(IUnitOfWork uow, IMapper mapper)
         {
             _uow = uow;
-            _createValidator = createValidator;
             _mapper = mapper;
         }
 
-        public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
-        {
-            var validationResult = _createValidator.Validate(dto);
-            if (validationResult.IsValid)
-            {
-                T createdEntity = _mapper.Map<T>(dto);
-                await _uow.GetRepository<T>().CreateAsync(createdEntity);
-                return new Response<CreateDto>(ResponseType.Success, dto);
-            }
-            return new Response<CreateDto>(dto, new());
-            throw new NotImplementedException();
-        }
-
-        public async Task<IResponse<IDto>> FindAsync(Guid id)
+        public bool Any()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IResponse<List<ListDto>>> GetAllAsync()
-        {
-            var data = await _uow.GetRepository<T>().GetAllAsync();
-            var dto = _mapper.Map<List<ListDto>>(data);
-            return new Response<List<ListDto>>(ResponseType.Success, dto);
-        }
-
-        Task<IResponse<CreateDto>> IService<CreateDto, UpdateDto, ListDto, T>.CreateAsync(CreateDto dto)
+        public bool Any(Expression<Func<T, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        Task<IResponse<IDto>> IService<CreateDto, UpdateDto, ListDto, T>.FindAsync(Guid id)
+        public Task<bool> AnyAsync()
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AnyAsync(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> CountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> CountAsync(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Create(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CreateAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Find(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> FindAsync(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ListDto> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetAll(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetAll<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetAll<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ListDto>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetByFilter(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<T> GetQuery()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ToQueryString()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        //public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
+        //{
+        //    var validationResult = _createValidator.Validate(dto);
+        //    if (validationResult.IsValid)
+        //    {
+        //        T createdEntity = _mapper.Map<T>(dto);
+        //        await _uow.GetRepository<T>().CreateAsync(createdEntity);
+        //        return new Response<CreateDto>(ResponseType.Success, dto);
+        //    }
+        //    return new Response<CreateDto>(dto, new());
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IResponse<IDto>> FindAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IResponse<List<ListDto>>> GetAllAsync()
+        //{
+        //    var data = await _uow.GetRepository<T>().GetAllAsync();
+        //    var dto = _mapper.Map<List<ListDto>>(data);
+        //    return new Response<List<ListDto>>(ResponseType.Success, dto);
+        //}
+
     }
 }
