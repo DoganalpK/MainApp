@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp.Persistence", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{D123CAE3-CB02-44C8-A9CC-0B2D5CE39ABE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp.WebApi", "src\Presentation\MainApp.WebApi\MainApp.WebApi.csproj", "{473D9EF1-DFE2-430D-8DDA-44EF56D28729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp.WebApi", "src\Presentation\MainApp.WebApi\MainApp.WebApi.csproj", "{473D9EF1-DFE2-430D-8DDA-44EF56D28729}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp.Presentation", "src\Presentation\MainApp.Presentation\MainApp.Presentation.csproj", "{063F48AB-0584-48E7-B53C-F482CEF9BFFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{473D9EF1-DFE2-430D-8DDA-44EF56D28729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{473D9EF1-DFE2-430D-8DDA-44EF56D28729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{473D9EF1-DFE2-430D-8DDA-44EF56D28729}.Release|Any CPU.Build.0 = Release|Any CPU
+		{063F48AB-0584-48E7-B53C-F482CEF9BFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{063F48AB-0584-48E7-B53C-F482CEF9BFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{063F48AB-0584-48E7-B53C-F482CEF9BFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{063F48AB-0584-48E7-B53C-F482CEF9BFFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{A393BF7B-E879-4AC0-BF02-9DC5B13FCD82} = {C1E8EFC4-B630-4657-9241-292100A4F77E}
 		{D123CAE3-CB02-44C8-A9CC-0B2D5CE39ABE} = {82303A88-6A55-4808-940B-41ED7CDE89AB}
 		{473D9EF1-DFE2-430D-8DDA-44EF56D28729} = {D123CAE3-CB02-44C8-A9CC-0B2D5CE39ABE}
+		{063F48AB-0584-48E7-B53C-F482CEF9BFFC} = {D123CAE3-CB02-44C8-A9CC-0B2D5CE39ABE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {346764FA-9C54-4E3C-8705-B16F172977C0}

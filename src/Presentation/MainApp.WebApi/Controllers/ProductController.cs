@@ -20,5 +20,11 @@ namespace MainApp.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new GetAllProductsQuery()));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post()
+        {
+            return Ok();
+        }
     }
 }

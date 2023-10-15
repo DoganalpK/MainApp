@@ -3,9 +3,9 @@ using MainApp.Application.Dtos.Product;
 
 namespace MainApp.Persistence.ValidationRules.FluentValidation
 {
-    public class ProductListDtoValidator : AbstractValidator<ProductListDto>
+    public class ProductCreateDtoValidator : AbstractValidator<ProductCreateDto>
     {
-        public ProductListDtoValidator()
+        public ProductCreateDtoValidator()
         {
             RuleFor(x => x.Name).NotEmpty();
         }

@@ -17,7 +17,7 @@ namespace MainApp.Application.Services
         where T : BaseEntity
     {
         private readonly IUnitOfWork _uow;
-        //private readonly IValidator<CreateDto> _createValidator;
+        private readonly IValidator<CreateDto> _createValidator;
         //private readonly IValidator<UpdateDto> _updateValidator;
         private readonly IMapper _mapper;
 
@@ -29,22 +29,23 @@ namespace MainApp.Application.Services
         //    _mapper = mapper;
         //}
 
-        public Service(IUnitOfWork uow, IMapper mapper)
+        public Service(IUnitOfWork uow, IValidator<CreateDto> createValidator, IMapper mapper)
         {
             _uow = uow;
+            _createValidator = createValidator;
             _mapper = mapper;
         }
 
         public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
         {
-            //var validationResult = _createValidator.Validate(dto);
-            //if (validationResult.IsValid)
-            //{
-            //    T createdEntity = _mapper.Map<T>(dto);
-            //    await _uow.GetRepository<T>().CreateAsync(createdEntity);
-            //    return new Response<CreateDto>(ResponseType.Success, dto);
-            //}
-            //return new Response<CreateDto>(dto, new());
+            var validationResult = _createValidator.Validate(dto);
+            if (validationResult.IsValid)
+            {
+                T createdEntity = _mapper.Map<T>(dto);
+                await _uow.GetRepository<T>().CreateAsync(createdEntity);
+                return new Response<CreateDto>(ResponseType.Success, dto);
+            }
+            return new Response<CreateDto>(dto, new());
             throw new NotImplementedException();
         }
 

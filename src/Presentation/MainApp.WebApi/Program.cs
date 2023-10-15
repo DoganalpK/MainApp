@@ -1,12 +1,13 @@
 using MainApp.Application.DependencyResolvers;
 using MainApp.Persistence.DependencyResolvers;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers();/*.AddApplicationPart(Assembly.GetAssembly(typeof(CustomControllerBase)));*/
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();

@@ -23,13 +23,15 @@ namespace MainApp.Persistence.DependencyResolvers
                     b => b.MigrationsAssembly(typeof(MainAppDbContext).Assembly.FullName));
             });
 
+
+
             services.AddScoped<IMainAppDbContext>(provider => provider.GetService<MainAppDbContext>());
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 
             services.AddTransient<IProductService, ProductService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddTransient<IValidator<ProductListDto>, ProductListDtoValidator>();
+            services.AddTransient<IValidator<ProductCreateDto>, ProductCreateDtoValidator>();
         }
     }
 }

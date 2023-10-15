@@ -20,8 +20,9 @@ namespace MainApp.Persistence.Services
         //}
 
         public ProductService(IUnitOfWork uow,
+            IValidator<ProductCreateDto> createDtoValidator,
             IMapper mapper)
-            : base(uow, mapper)
+            : base(uow, createDtoValidator, mapper)
         {
 
         }
