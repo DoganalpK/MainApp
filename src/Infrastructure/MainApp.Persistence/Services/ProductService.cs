@@ -1,15 +1,13 @@
-﻿using AutoMapper;
-using MainApp.Application.Dtos.Product;
-using MainApp.Application.Interfaces.Services;
-using MainApp.Application.Interfaces.Uow;
-using MainApp.Application.Services;
+﻿using MainApp.Application.Interfaces.Services;
 using MainApp.Domain.Entities;
+using MainApp.Persistence.Contexts;
+using MainApp.Persistence.Repositories;
 
 namespace MainApp.Persistence.Services
 {
-    public class ProductService : Service<ProductCreateDto, ProductUpdateDto, ProductListDto, Product>, IProductService
+    public class ProductService : Repository<Product>, IProductService
     {
-        public ProductService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper)
+        public ProductService(MainAppDbContext dbContext) : base(dbContext)
         {
         }
     }

@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp.WebApi", "src\Presentation\MainApp.WebApi\MainApp.WebApi.csproj", "{473D9EF1-DFE2-430D-8DDA-44EF56D28729}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp.Presentation", "src\Presentation\MainApp.Presentation\MainApp.Presentation.csproj", "{063F48AB-0584-48E7-B53C-F482CEF9BFFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp.Presentation", "src\Presentation\MainApp.Presentation\MainApp.Presentation.csproj", "{063F48AB-0584-48E7-B53C-F482CEF9BFFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

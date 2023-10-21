@@ -1,18 +1,14 @@
 ﻿using MainApp.Application.Enums;
-using MainApp.Application.Interfaces.Dtos;
 using MainApp.Domain.Common;
 using System.Linq.Expressions;
 
 namespace MainApp.Application.Interfaces.Repositories
 {
-    public interface IRepository<CreateDto, UpdateDto, ListDto, T>
-        where CreateDto : class, IDto, new()
-        where UpdateDto : class, IUpdateDto, new()
-        where ListDto : class, IDto, new()
+    public interface IRepository<T>
         where T : BaseEntity
     {
-        List<ListDto> GetAll();
-        Task<List<ListDto>> GetAllAsync();
+        List<T> GetAll();
+        Task<List<T>> GetAllAsync();
         List<T> GetAll(Expression<Func<T, bool>> filter);
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter);
         List<T> GetAll<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC);

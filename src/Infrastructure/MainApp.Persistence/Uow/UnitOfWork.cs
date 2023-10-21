@@ -14,7 +14,7 @@ namespace MainApp.Persistence.Uow
         {
             _context = context;
         }
-        // TODO : IRepository to IService
+
         public IRepository<T> GetRepository<T>() where T : BaseEntity => new Repository<T>(_context);
 
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
