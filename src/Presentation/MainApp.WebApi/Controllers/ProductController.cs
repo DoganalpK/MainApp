@@ -1,4 +1,5 @@
-﻿using MainApp.Application.Features.Queries.GetAllProducts;
+﻿using MainApp.Application.Features.Commands.CreateProduct;
+using MainApp.Application.Features.Queries.GetAllProducts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace MainApp.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new CreateProductCommand()));
         }
     }
 }

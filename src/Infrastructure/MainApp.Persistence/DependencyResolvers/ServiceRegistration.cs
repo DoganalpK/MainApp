@@ -7,8 +7,10 @@ using MainApp.Persistence.Contexts;
 using MainApp.Persistence.Services;
 using MainApp.Persistence.Uow;
 using MainApp.Persistence.ValidationRules.FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace MainApp.Persistence.DependencyResolvers
 {
